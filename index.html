@@ -3,5 +3,52 @@
 <div id="text"></div>
  
 <script>
-document.getElementById("text").innerHTML = "Text added by JavaScript code";
+ 
+ var irany = ["új", "több", "Kevesebb", "Ingyen"];
+ var tobbTargy = ["park", "zöld terület", "nyilvános wc", "szociális bérlakás", "nő a közigazgatásba"];
+ var kevesebbTargy = ["patkány", "korrupció", "autó"];
+ var ingyenTargy = ["BKV", "közelekedés", "parkolás", "lakhatás"];
+ var idok = ["hónap", "hét", "nap"];
+ var darabTargy = ["busz" , "villamos", "szociális bérlakás", "nyilvános wc", "nő a közigazgatásba"]
+
+ var szazalek = Math.floor(Math.random() * 901) + 100; 
+ var idoEgyseg = Math.floor(Math.random() * 10) +1;
+ var darab = Math.floor(Math.random() * 100) + 100; 
+
+ console.log(idoEgyseg);
+
+ var iranyIndex = Math.floor(Math.random() * 4);
+ var tobbIndex = Math.floor(Math.random() * 4);
+ var targyIndex = Math.floor(Math.random() * 2); 
+ var idokIndex = Math.floor(Math.random() * 3);  
+ var ingyenIndex = Math.floor(Math.random() * 4); 
+ var darabIndex =  Math.floor(Math.random() * 4); 
+ var kevesebbIndex =  Math.floor(Math.random() * 2); 
+
+ var type = Math.floor(Math.random() * 4);
+
+ var text = "";
+ switch(type) {
+     case 0:
+        text += irany[3] +  " " + ingyenTargy[ingyenIndex];
+        break;
+     case 1:
+        text += szazalek + "%-al " + irany[1] + " " + tobbTargy[tobbIndex] + " " + idoEgyseg + " " + idok[idokIndex] + " " + "alatt";
+        break;
+     case 2:
+        text += darab +" db " + irany[0] + " " + darabTargy[darabIndex];
+        break;
+     case 3:
+        text += irany[2] + " " + kevesebbTargy[kevesebbIndex];
+        break;
+ }
+
+ text += "!";
+
+ //var text = szazalek + "%-al " + irany[iranyIndex] + " " + 
+  //          targy[targyIndex] + " " + idoEgyseg + " " + 
+   //         idok[idokIndex] + " " + "alatt";
+ 
+ 
+document.getElementById("text").innerHTML = text;
 </script>
