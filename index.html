@@ -1,54 +1,150 @@
-<h1>Hello World</h1>
 
-<div id="text"></div>
- 
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet">
+
+<style>
+  .cent {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    text-align: center;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    font-size: 400%;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .gomb {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    text-align: center;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    font-size: 400%;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .credit {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    text-align: center;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    font-size: 150%;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .butt {
+    font-size: 30px;
+    font-family: 'Bitter', serif;
+    padding: 14px 40px;
+    border: 2px solid #4CAF50;
+    background-color: rgba(255, 0, 0, 0.0);
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+  }
+
+  .logo {
+    text-decoration: underline;
+  }
+
+  .butt:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+</style>
+
+<div class="credit">
+A
+<a href="https://www.facebook.com/polgarmemester" class="logo">Polgármemester</a>
+bemutatja: főpolgármester-jelölti programgenerátor!
+</div>
+
+<div id="text" class="cent" onClick="window.location.reload();">
+</div>
+
+<div class="gomb">
+  <button  class="butt" onClick="window.location.reload();"> Új programpont! </button>
+</div>
+
 <script>
- 
- var irany = ["új", "több", "Kevesebb", "Ingyen"];
- var tobbTargy = ["park", "zöld terület", "nyilvános wc", "szociális bérlakás", "nő a közigazgatásba"];
- var kevesebbTargy = ["patkány", "korrupció", "autó"];
- var ingyenTargy = ["BKV", "közelekedés", "parkolás", "lakhatás"];
+
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
+  function getColor(){
+    return "hsl(" + 360 * Math.random() + ',' +
+               (25 + 70 * Math.random()) + '%,' +
+               (85 + 10 * Math.random()) + '%)'
+  }
+
+  document.body.style.backgroundColor = getColor();
+
+ var irany = ["új", "több", "kevesebb", "Ingyen"];
+ var tobbTargy = ["park", "zöld terület", "nyilvános wc", "szociális bérlakás",
+                  "nő a közigazgatásba", "kerékpár út", "lopakodó olimpia"];
+ var kevesebbTargy = ["patkány", "korrupció", "autó", "stadion", "klímakatasztrófa"];
+ var ingyenTargy = ["BKV", "közelekedés", "parkolás", "lakhatás", "MÁV", "elektromos roller", "kerékpár"];
  var idok = ["hónap", "hét", "nap"];
- var darabTargy = ["busz" , "villamos", "szociális bérlakás", "nyilvános wc", "nő a közigazgatásba"]
+ var darabTargy = ["busz" , "villamos", "szociális bérlakás", "nyilvános wc",
+                  "nő a közigazgatásba", "CT készülék", "kerékpár út", "Tudományos Akadémia"];
+ var adok = ["Tiborcz", "Mészáros", "Gazdagodási", "Csak fideszesekre érvényes"];
+ var kinek = ["év alattiaknak", "év felettieknek", "éveseknek"];
+ var alapit = ["Tudományos Akadémiát", "Nagyerdőt", "Alkotmányt", "Esőerdőt",
+              "Emberi Jogok Nyilatkozatát", "Klímaegyezményt",
+              "Isztambuli Nyilatkozatot", "Korallzátonyt"]
 
- var szazalek = Math.floor(Math.random() * 901) + 100; 
+ var szazalek = Math.floor(Math.random() * 901) + 100;
  var idoEgyseg = Math.floor(Math.random() * 10) +1;
- var darab = Math.floor(Math.random() * 100) + 100; 
+ var darab = Math.floor(Math.random() * 100) + 100;
+ var kor = Math.floor(Math.random() * 150) + 1;
 
- console.log(idoEgyseg);
 
  var iranyIndex = Math.floor(Math.random() * 4);
- var tobbIndex = Math.floor(Math.random() * 4);
- var targyIndex = Math.floor(Math.random() * 2); 
- var idokIndex = Math.floor(Math.random() * 3);  
- var ingyenIndex = Math.floor(Math.random() * 4); 
- var darabIndex =  Math.floor(Math.random() * 4); 
- var kevesebbIndex =  Math.floor(Math.random() * 2); 
+ var tobbIndex = Math.floor(Math.random() * 6);
+ var targyIndex = Math.floor(Math.random() * 2);
+ var idokIndex = Math.floor(Math.random() * 3);
+ var ingyenIndex = Math.floor(Math.random() * 7);
+ var darabIndex =  Math.floor(Math.random() * 7);
+ var kevesebbIndex =  Math.floor(Math.random() * 5);
+ var adokIndex = Math.floor(Math.random() * 4);
+ var kinekIndex = Math.floor(Math.random() * 3);
+ var alapitIndex = Math.floor(Math.random() * 8);
 
- var type = Math.floor(Math.random() * 4);
+ var type = Math.floor(Math.random() * 7);
 
  var text = "";
  switch(type) {
      case 0:
-        text += irany[3] +  " " + ingyenTargy[ingyenIndex];
+        text += irany[3] +  " " + ingyenTargy[ingyenIndex] + " a " + kor + " " + kinek[kinekIndex];
         break;
      case 1:
         text += szazalek + "%-al " + irany[1] + " " + tobbTargy[tobbIndex] + " " + idoEgyseg + " " + idok[idokIndex] + " " + "alatt";
         break;
      case 2:
-        text += darab +" db " + irany[0] + " " + darabTargy[darabIndex];
+        text += darab + " db " + irany[0] + " " + darabTargy[darabIndex];
         break;
      case 3:
-        text += irany[2] + " " + kevesebbTargy[kevesebbIndex];
+        text += darab + " darabbal " + irany[2] + " " + kevesebbTargy[kevesebbIndex];
+        break;
+     case 4:
+        text += capitalize(kevesebbTargy[kevesebbIndex]) + " STOP";
+        break;
+     case 5:
+        text += adok[adokIndex] + " adó";
+        break;
+     case 6:
+        text += "Megalapítom a Budapesti " + alapit[alapitIndex];
         break;
  }
 
  text += "!";
 
- //var text = szazalek + "%-al " + irany[iranyIndex] + " " + 
-  //          targy[targyIndex] + " " + idoEgyseg + " " + 
-   //         idok[idokIndex] + " " + "alatt";
- 
- 
 document.getElementById("text").innerHTML = text;
 </script>
